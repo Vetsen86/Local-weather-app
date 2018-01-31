@@ -1,0 +1,20 @@
+body {
+  font-family: 'PT Serif', serif;
+  background-color: #000066;
+  color: white;
+}
+
+.banner {
+  margin: 50px auto;
+  line-height: 150%;
+  font-size: 50px;
+}
+
+.weather-box {
+  max-width: 20%;
+  margin: 0 auto;
+}
+
+.location {
+  font-size: 25px;
+}
