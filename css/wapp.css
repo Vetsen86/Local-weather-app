@@ -1,7 +1,8 @@
 body {
   font-family: 'PT Serif', serif;
-  background-color: #000066;
-  color: white;
+  background-color: #7EB23E;
+  color: #0D1930;
+  font-weight: bold;
 }
 
 .banner {
@@ -15,6 +16,13 @@ body {
   margin: 0 auto;
 }
 
-.location {
+.location, .weather-info {
   font-size: 25px;
+}
+
+#weather-img {
+  width: 150px;
+  display: block;
+  height: 150px;
+  margin: 0 auto;
 }

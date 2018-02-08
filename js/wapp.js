@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+  //global variables for fahrenheit to celsius conversion
+  let temperature = 0;
+  let degreeType = "c";
+
   //This function finds the user's longitude and latitude
   function getLocation() {
     if (navigator.geolocation) {
@@ -9,10 +13,12 @@ $(document).ready(function () {
     }
   }
 
+  getLocation();
+
   //this function sets longitude and latitude variables to be used elsewhere
   function letPosition(position) {
-    let long = position.coords.longitude;
-    let lat = position.coords.latitude;
+    const long = position.coords.longitude;
+    const lat = position.coords.latitude;
     getPositionName(long, lat);
     getWeather(long, lat);
   }
@@ -33,9 +39,42 @@ $(document).ready(function () {
     });
   }
 
-  function getWeather(long, lat) {
-
+  //function that converts Celsius to Fahrenheit and vice versa
+  function tempConvert(temp) {
+    if (degreeType == "c") {
+      temp = temp * 9 / 5 + 32;
+      $("#temp").text(temp);
+      $("#CToF").html("&#8457;");
+      degreeType = "f";
+    } else if (degreeType == "f") {
+      $("#temp").text(temp);
+      $("#CToF").html("&#8451;");
+      degreeType = "c";
+    }
   }
 
-  getLocation();
+  //Pulls weather information from the FreeCodeCamp weather api
+  function getWeather(long, lat) {
+    const weatherUrl = "https://fcc-weather-api.glitch.me/api/current?lon=" + long + "&lat=" + lat;
+    $.ajax({
+      url: weatherUrl,
+      type: 'GET',
+      dataType: 'json',
+      success(response) {
+        $("#weather-img").attr("src", response.weather[0].icon);
+        $("#temp").before("Condition: " + response.weather[0].main + "<br>Temperature: ");
+        $("#temp").text(response.main.temp);
+        temperature = Math.floor(response.main.temp);
+        tempConvert(temperature);
+      },
+      error (jqXHR, status, errorThrown) {
+        console.log(jqXHR);
+      }
+    });
+  }
+
+  //Creates a button that will change the temperature display from Celsius to Fahrenheit when clicked
+  $("#CToF").on('click', function() {
+    tempConvert(temperature);
+  });
 });
