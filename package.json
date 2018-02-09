@@ -1,0 +1,26 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "simple local weather",
+  "main": "index.js",
+  "dependencies": {
+    "babel-cli": "^6.26.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vetsen86/Local-weather-app.git"
+  },
+  "author": "Erik Beckstrand",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vetsen86/Local-weather-app/issues"
+  },
+  "homepage": "https://github.com/Vetsen86/Local-weather-app#readme"
+}
